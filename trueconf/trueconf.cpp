@@ -29,7 +29,7 @@ int main()
 
 	const size_t size = 20;
 	
-	for (int i = 0; i < size; i++) {
+	for (size_t i = 0; i < size; i++) {
 		vecInt.push_back(1+rand() % 9 );
 		mapInt[i] = 1 + rand() % 9;
 	}
@@ -63,7 +63,7 @@ int main()
 
 ostream& operator<<(ostream& stream, vector<int> v) {
 	cout <<endl<< "vector has " << v.size() << " elements" << endl;
-	for (int i = 0; i < v.size(); i++) {
+	for (size_t i = 0; i < v.size(); ++i) {
 		if (i % 10 == 0) cout << endl;
 		cout <<setw(2) << v[i] << " ";
 	}
@@ -88,7 +88,7 @@ void deleteRandomNumbersForMap(map<int, int> &m)
 		( 1 + rand() % m.size() ) 
 		: (1 + rand() % 15);
 	auto it = m.begin();
-	for (int i = 0; i<randomCount; i++){
+	for (size_t i = 0; i<randomCount; ++i){
 		it = m.find(i);
 		it = m.erase(it);
 	}
