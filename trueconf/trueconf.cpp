@@ -40,11 +40,14 @@ int main()
 	deleteRandomNumbersForMap(mapInt);
 	deleteRandomNumbersForVector(vecInt);
 	
+	cout << string(80, '-').c_str();
 	cout << "after random delete" << endl;
 	
 
 	cout << vecInt << endl;
 	cout << mapInt << endl;
+
+	cout << string(80, '-').c_str();
 
 	cout << "synchronize map and vector" << endl;
 	Synchronize(vecInt, mapInt);
@@ -81,7 +84,9 @@ ostream& operator<<(ostream& stream, map<int, int> m) {
 
 void deleteRandomNumbersForMap(map<int, int> &m)
 {
-	int randomCount = (m.size() < 15) ? ( 1 + rand() % m.size() ) : (1 + rand() % 15);
+	int randomCount = (m.size() < 15) ?
+		( 1 + rand() % m.size() ) 
+		: (1 + rand() % 15);
 	auto it = m.begin();
 	for (int i = 0; i<randomCount; i++){
 		it = m.find(i);
@@ -92,7 +97,9 @@ void deleteRandomNumbersForMap(map<int, int> &m)
 }
 
 void deleteRandomNumbersForVector(vector<int> &v) {
-	int randomCount = (v.size() < 15) ? (1 + rand() % v.size()) : (1 + rand() % 15);
+	int randomCount = (v.size() < 15) ? 
+		(1 + rand() % v.size()) 
+		: (1 + rand() % 15);
 	v.erase(v.begin(), v.begin() + randomCount);
 }
 
@@ -108,7 +115,10 @@ void Synchronize(vector<int>& v, map<int, int>& m){
 	});
 
 	sort(numbersInBoth.begin(), numbersInBoth.end());
-	numbersInBoth.erase(unique(numbersInBoth.begin(), numbersInBoth.end()), numbersInBoth.end());
+
+	numbersInBoth.erase(
+		unique(numbersInBoth.begin(), numbersInBoth.end()), 
+		numbersInBoth.end());
 
 	cout << "Unique elements are:" << endl;
 	cout << string(80,'-').c_str();
@@ -116,15 +126,24 @@ void Synchronize(vector<int>& v, map<int, int>& m){
 	cout << string(80, '-').c_str();
 	
 	for (auto it = v.begin(); it != v.end();)
-		if (find(numbersInBoth.begin(), numbersInBoth.end(), *it) == numbersInBoth.end())
+		if (find(numbersInBoth.begin(), 
+			numbersInBoth.end(), 
+			*it) == numbersInBoth.end())
+
 			it = v.erase(it);
+
 		else
 			++it;
 	
 	for (auto it = m.begin(); it != m.end();)
-		if (find(numbersInBoth.begin(), numbersInBoth.end(), it->second) == numbersInBoth.end())
+		if (find(numbersInBoth.begin(), 
+			numbersInBoth.end(), 
+			it->second) == numbersInBoth.end())
+
 			it = m.erase(it);
+
 		else
+	
 			++it;
 	
 }
