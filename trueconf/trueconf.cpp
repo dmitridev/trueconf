@@ -18,7 +18,7 @@ ostream& operator<<(ostream& stream, map<int, int> m);
 void deleteRandomNumbersForMap(map<int, int> &m);
 void deleteRandomNumbersForVector(vector<int> &v);
 
-void Synchronize(vector<int> &v, map<int, int> &m);
+void synchronize(vector<int> &v, map<int, int> &m);
 
 
 int main()
@@ -50,7 +50,7 @@ int main()
 	cout << string(80, '-').c_str();
 
 	cout << "synchronize map and vector" << endl;
-	Synchronize(vecInt, mapInt);
+	synchronize(vecInt, mapInt);
 
 	cout << "after synchronize" << endl;
 	cout << vecInt << endl;
@@ -103,7 +103,7 @@ void deleteRandomNumbersForVector(vector<int> &v) {
 	v.erase(v.begin(), v.begin() + randomCount);
 }
 
-void Synchronize(vector<int>& v, map<int, int>& m){
+void synchronize(vector<int>& v, map<int, int>& m){
 	vector<int> numbersInBoth;
 
 	copy_if(v.begin(), v.end(), back_inserter(numbersInBoth), [&m](const int&a) {
